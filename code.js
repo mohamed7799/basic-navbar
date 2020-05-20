@@ -7,16 +7,21 @@ let mLinks = document.getElementById("mobile-links");
 
 //event listneres
 toggle.addEventListener("click", (e) => {
-    mLinks.classList.toggle("hide");
+
+    if (mLinks.style.maxHeight) {
+        mLinks.style.maxHeight = null;
+    } else {
+        mLinks.style.maxHeight = mLinks.scrollHeight + "px";
+    }
     e.stopPropagation();
 })
 
 mLinks.addEventListener('click', (e) => {
-    mLinks.classList.remove('hide');
+    mLinks.style.maxHeight = mLinks.scrollHeight + "px";
 })
 
 document.addEventListener("click", (e) => {
     if (e.target.parentElement.id !== "mobile-links" && e.target.id !== "mobile-links") {
-        mLinks.classList.add("hide")
+        mLinks.style.maxHeight = null;
     }
 })
